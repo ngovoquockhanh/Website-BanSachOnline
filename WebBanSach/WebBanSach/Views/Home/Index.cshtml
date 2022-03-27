@@ -1,0 +1,92 @@
+﻿@using WebBanSach.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Sach>
+<link href="~/Content/TrangChu.css" rel="stylesheet" />
+@{
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml   ";
+    ViewBag.Title = "Index";
+}
+
+@section NoiDungBenPhai{
+  
+    <div id="DichVu" class="row">
+       
+       
+            <h3>Dịch Vụ</h3>
+            <ul>
+                <li>
+                    <a href="/DichVu/Index">Điều khoản Sử Dụng</a>
+                </li>
+                <li>
+                    <a href="/DichVu/BaoMat">Chính Sách Bảo Mật</a>
+                </li>
+            </ul>
+        
+ 
+    </div>
+    <div style="margin-left:40%;margin-top:-11%   ">
+        <h3>Hỗ Trợ</h3>
+        <ul style="margin-left:-40px">
+            <li>
+                <a href="/DichVu/HoTro">Chính sách đổi - trả - hoàn tiền</a>
+            </li>
+            <li>
+                <a href="/DichVu/VanChuyen">Phương thức vận chuyển</a>
+            </li>
+        </ul>
+
+    </div>
+    <div>
+        <img src="~/HinhAnh/b.jpg" />
+    </div>
+}
+<br />
+@*divBody trang index*@
+<h3 style="margin-left:2%;font-weight:normal;color:black">Sách mới xuất bản</h3>
+<hr />
+@*
+    Chú thích:
+    -Div divBody chứa Div SanPham
+    -Div SanPham chứa Div AnhBia,ThongTin
+    -Div ThongTin chứa Div TenSach,DonGia
+*@
+
+<div id="divBody" class="row">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 mr-5" style="max-width:300px">
+            <div id="SanPham">
+                <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.MaSach })"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="150" height="200" /></a>
+                <div id="TenSach"><span style="color: green; font-weight: normal; text-decoration-line: underline;">Tên Sách:</span><br /><span id="Gia">@string.Format("{0:0,0}", @item.MoTa)</span></div>
+                <div id="Gia"><span style="color: green; font-weight: normal; text-decoration-line: underline;">Đơn Giá:</span><br /><span id="Gia">@string.Format("{0:0,0}", @item.GiaBan) VNĐ</span></div>
+
+
+                <div id="GioHang">
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                    {
+                        <input type="submit" value="Mua Hàng " id="btnGioHang" class="btn btn-primary" />
+                    }
+                </div>
+                <br />
+            </div>
+
+        </div>
+
+
+    }
+</div>
+
+<div style="clear:both"></div>
+@* Tạo link liên kết các trang*@
+<a style="margin-left:20px"> Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount</a>
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+
+</style>

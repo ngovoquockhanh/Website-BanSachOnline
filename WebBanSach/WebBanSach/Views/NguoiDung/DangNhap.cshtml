@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+@section NoiDungBenPhai{
+
+    <div id="DichVu" class="row">
+
+
+        <h3>Dịch Vụ</h3>
+        <ul>
+            <li>
+                <a href="/DichVu/Index">Điều khoản Sử Dụng</a>
+            </li>
+            <li>
+                <a href="/DichVu/BaoMat">Chính Sách Bảo Mật</a>
+            </li>
+        </ul>
+
+
+    </div>
+    <div style="margin-left:40%;margin-top:-11%   ">
+        <h3>Hỗ Trợ</h3>
+        <ul style="margin-left:-40px">
+            <li>
+                <a href="/DichVu/HoTro">Chính sách đổi - trả - hoàn tiền</a>
+            </li>
+            <li>
+                <a href="/DichVu/VanChuyen">Phương thức vận chuyển</a>
+            </li>
+        </ul>
+
+    </div>
+    <div>
+        <img src="~/HinhAnh/b.jpg" />
+    </div>
+}
+
+<hr />
+<h2>
+    <span style="margin-left:45%">Đăng Nhập</span>
+</h2>
+<h2 style="margin-left:45%">@ViewBag.ThongBao</h2>
+@using (Html.BeginForm("DangNhap", "NguoiDung"))
+{
+    <span style="float:left;margin-left:45%">Tài Khoản:</span>
+    <br />
+    <input style="  margin-left:45%" id="txtTaiKhoan" name="txtTaiKhoan" type="text" value="">
+
+
+    <br />
+    <span style="margin-left:45%">Mật Khẩu:</span>
+    <br />
+    <input style="margin-left:45%" name="txtMatKhau" type="password" />
+
+    <br />
+    <br />
+    <div>
+        <input style="margin-left:45%" type="submit" id="btnDangNhap" value="Đăng Nhập" />
+    </div>
+
+
+
+}

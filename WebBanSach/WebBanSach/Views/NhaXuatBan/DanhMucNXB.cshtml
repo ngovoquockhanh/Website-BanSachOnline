@@ -1,0 +1,15 @@
+﻿@using WebBanSach.Models;
+@model List<NhaXuatBan>
+@{
+    ViewBag.Title = "DanhMucNXB";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<p>Nhà Xuất Bản</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <div><a href="@Url.Action("SachTheoNXB",new { MaNXB=item.MaNXB})" class="list-group-item">@item.TenNXB</a></div>
+    }
+    <div><a href="@Url.Action("DanhMucNXB")">Nhà Xuất Bản Khác</a></div>
+</div>

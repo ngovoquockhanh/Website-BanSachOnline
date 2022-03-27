@@ -1,0 +1,32 @@
+﻿@using WebBanSach.Models;
+@model List<Sach>
+@{
+    ViewBag.Title = "SachTheoNXB";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<div id="divBody" class="row">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 mr-5" style="max-width:200px">
+            <div id="SanPham">
+                <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.MaSach })"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="150" height="200" /></a>
+                <div id="TenSach"><span style="color: green; font-weight: normal; text-decoration-line: underline;">Tên Sách:</span><br /><span id="Gia">@string.Format("{0:0,0}", @item.MoTa)</span></div>
+                <div id="Gia"><span style="color: green; font-weight: normal; text-decoration-line: underline;">Đơn Giá:</span><br /><span id="Gia">@string.Format("{0:0,0}", @item.GiaBan) VNĐ</span></div>
+
+
+                <div id="GioHang">
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                    {
+                        <input type="submit" value="Mua Hàng " id="btnGioHang" class="btn btn-primary" />
+                    }
+                </div>
+                <br />
+            </div>
+
+        </div>
+
+
+    }
+</div>

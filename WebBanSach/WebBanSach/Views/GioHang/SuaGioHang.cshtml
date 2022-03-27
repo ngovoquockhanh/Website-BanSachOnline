@@ -1,0 +1,67 @@
+﻿@using WebBanSach.Models
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "Sửa giỏ hàng";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+
+        <td style="float:right;">Tên    sách</td>
+
+        <td>Ảnh bìa</td>
+
+        <td>Đơn giá</td>
+
+        <td>Số lượng</td>
+
+        <td>Thành tiền</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+            <td>@item.iMaSach</td>
+
+            <td style=" text-align: center;">@item.sTenSach</td>
+
+            <td> <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.iMaSach })"><img src="@Url.Content("~/HinhAnhSP/"+item.sAnhBia)" width="50" height="50" /></a> </td>
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @MaSP = item.iMaSach }))
+            {
+                <td>@String.Format("{0:0,0}", item.dDonGia) VND</td>
+
+                <td>@Html.TextBox("txtSoLuong", item.iSoLuong)</td>
+
+
+                <td>@string.Format("{0:0,0}", @item.ThanhTien) VNĐ</td>
+                <td>
+                    <input type="submit" value="Cập Nhật" />
+                    <br />
+
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.iMaSach })
+                </td>
+            }
+
+
+        </tr>
+    }
+
+</table>
+<style>
+    #divGioHang {
+        border: 1px solid #EEEEEE;
+        margin-left: 10%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 1px solid #EEEEEE;
+        }
+</style>
+

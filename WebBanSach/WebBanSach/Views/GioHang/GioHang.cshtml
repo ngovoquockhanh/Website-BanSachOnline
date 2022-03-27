@@ -1,0 +1,64 @@
+﻿@using WebBanSach.Models
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+
+        <td style="float:right;">Tên    sách</td>
+
+        <td>Ảnh bìa</td>
+
+        <td>Đơn giá</td>
+
+        <td>Số lượng</td>
+
+        <td>Thành tiền</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSach</td>
+
+            <td style=" text-align: center;">@item.sTenSach</td>
+
+            <td> <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.iMaSach })"><img src="@Url.Content("~/HinhAnhSP/"+item.sAnhBia)" width="50" height="50" /></a> </td>
+
+            <td >@String.Format("{0:0,0}", item.dDonGia) VND</td>
+
+            <td style=" text-align: center;">@item.iSoLuong</td>
+
+            <td>@String.Format("{0:0,0}", item.ThanhTien) VND</td>
+
+        </tr>
+    }
+    <tr>
+        <td colspan="6" style="text-align:right;">
+            @Html.ActionLink("Chỉnh sửa giỏ hàng","SuaGioHang")
+
+        </td>
+    <tr>
+        <td colspan="6" style="text-align:right;color:blue">
+           @Html.ActionLink("ĐẶT HÀNG","DatHang","GioHang")
+        </td>
+    </tr>
+</table>
+<style>
+    #divGioHang{
+        border:1px solid #EEEEEE;
+        margin-left:10%;
+
+    }
+        #divGioHang td {
+            padding: 10px;
+            border: 1px solid #EEEEEE;
+        }
+</style>
+

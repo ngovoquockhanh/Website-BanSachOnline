@@ -1,0 +1,59 @@
+﻿@using WebBanSach.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "Dathang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+
+
+<table>
+</table>
+
+<tr style="font-weight: bold; text-align:center; color:red">
+    <td colspan="6"> <a href="@Url.Action("GioHang","Giohang")"> TRỞ VỀ TRANG GIỎ HÀNG  </a></td>
+</tr>
+
+
+
+<hr />
+<h2 style="text-align:center">THÔNG TIN ĐẶT HÀNG</h2>
+@{
+    KhachHang kh = (KhachHang)Session["use"];
+}
+<div style="margin-left:35%">
+    <table align="center">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height:40px;">
+                <td style=" "> Họ tên khách hàng:</td>
+                <td style="font-weight: bold; "><a style="margin-left:10%"> @kh.HoTen </a>  </td>
+            </tr>
+            <tr style="height: 40px; margin-left: 20px">
+                <td> Địa chỉ:</td>
+                <td style="font-weight:bold">  @kh.DiaChi</td>
+            </tr>
+            <tr style="height: 40px; margin-left: 20px">
+                <td> Địện thoại:</td>
+                <td style="font-weight:bold">  @kh.DienThoai </td>
+            </tr>
+
+            <tr style="height: 40px; margin-left: 20px">
+                <td> Ngày đặt:</td>
+                <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+            </tr>
+
+            <tr style="height: 40px; margin-left: 20px">
+                <td></td>
+                <td>
+                    @Html.ActionLink("Đồng Ý Đặt Hàng", "Xacnhandonhang", "GioHang")
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

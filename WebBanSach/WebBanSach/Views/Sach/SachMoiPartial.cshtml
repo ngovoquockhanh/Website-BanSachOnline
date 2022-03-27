@@ -1,0 +1,28 @@
+﻿@using WebBanSach.Models;
+@model List<Sach>
+
+<h1 class="item-header">Sách Mới</h1>
+@{
+    foreach (var item in Model)
+    {
+        <div class="activity-list-update">
+            <img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="50" height="50" alt="Image">
+            <p><strong>Tiêu Đề: @item.TenSach</strong><br /> <a href="@Url.Action("XemChiTiet",new { @masach=item.MaSach})">Xem Chi Tiết</a></p>
+            <div class="clear"></div>
+        </div>
+       
+
+
+    }
+     <a href="#" class="item-footer green">
+            Sách Loại Mới Nhất
+
+        </a>
+
+}
+
+
+
+
+
+

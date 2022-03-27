@@ -1,0 +1,98 @@
+﻿@using WebBanSach.Models;
+@model Sach
+
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<style>
+
+
+    #divslider {
+        display: none;
+    }
+</style>
+
+@section NoiDungBenPhai{
+    <div id="HinhAnh">
+        <img src="@Url.Content("~/HinhAnhSP/"+Model.AnhBia)" />
+    </div>
+    <div id="ThongTin">
+        <div id="TenSach">@Model.TenSach</div>
+        <div id="ChuDe">Chủ đề :@ViewBag.TenChuDe</div>
+        <div id="NhaXuaBan">Nhà Xuất Bản: @ViewBag.NhaXuatBan</div>
+        <div id="Mota"> Nội Dung Tóm Tắt:<br />-@Model.MoTa<br /></div>
+        <div id="Gia"><span style="color:green;font-weight:normal;">Đơn Giá</span><br /><span id="Gia">@string.Format("{0:0,0}", Model.GiaBan) VNĐ</span></div>
+        <br />
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strURL = Request.Url.ToString() }))
+        {
+            <input type="submit" value="Mua Hàng &#xf07a; " id="btnGioHang" class="btn btn-primary" />
+        }
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strURL = Request.Url.ToString() }))
+        {
+           
+        }
+        
+
+
+
+    </div>
+  
+   
+  
+    <div style="clear:both"></div>
+}
+<style>
+    #HinhAnh {
+        margin-top: -2%;
+        margin-left: 25%;
+    }
+
+    #ThongTin {
+        margin-top: -28%;
+        margin-left: 50%;
+        float: left;
+        width: 600px;
+    }
+
+    #TenSach {
+        font-weight: normal;
+        font-size: 20pt;
+        height: auto;
+        word-wrap: break-word; /*Canh nội dung tự xuống dòng */
+        color: red;
+    }
+
+    #ChuDe, #NhaXuatBan {
+        font-size: 15pt;
+        font-weight: normal;
+        color: black;
+        height: auto;
+    }
+
+    #Mota {
+        font-weight: normal;
+        color: black;
+        word-wrap: break-word;
+        height: auto;
+    }
+
+    #Gia span#Gia {
+        font-weight: normal;
+        color: orange;
+        font-size: 25pt;
+        height: auto;
+    }
+
+    #btnGioHang {
+        margin-top: -5%;
+        font-family: 'FontAwesome','Segoe UI';
+        background-color: red;
+    }
+
+        #btnGioHang:hover {
+            background-color: #a30a11;
+        }
+</style>
